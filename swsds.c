@@ -82,22 +82,31 @@ int main(int argc, char **argv)
 
 	int puk_len, prk_len;
 
-	puk_len = FileRead(filename_public, "rb", (unsigned char *)&public_key_r, sizeof(public_key_r));
-	if(puk_len < sizeof(ECCrefPublicKey))
-	{
-		printf("读取公钥失败，按任意键退出................\n");
-		return 0;
-	}
+// 	puk_len = FileRead(filename_public, "rb", (unsigned char *)&public_key_r, sizeof(public_key_r));
+// 	if(puk_len < sizeof(ECCrefPublicKey))
+// 	{
+// 		printf("读取公钥失败，按任意键退出................\n");
+// 		return 0;
+// 	}
 
+	read_bcd_key_to_bin("PublicKey.txt", (unsigned char*)&public_key_r, sizeof(ECCrefPublicKey));
+	read_bcd_key_to_bin("PrivateKey.txt", (unsigned char*)&private_key_r, sizeof(ECCrefPrivateKey));
 	//read_bcd_key_to_bin(&public_key_r, sizeof(ECCrefPublicKey), filename_public);
 
-	prk_len = FileRead(filename_private, "rb", (unsigned char *)&private_key_r, sizeof(private_key_r));
-	if(prk_len < sizeof(ECCrefPrivateKey))
-	{
-		printf("读取私钥失败，按任意键退出................\n");
-		return 0;
-	}
+// 	prk_len = FileRead(filename_private, "rb", (unsigned char *)&private_key_r, sizeof(private_key_r));
+// 	if(prk_len < sizeof(ECCrefPrivateKey))
+// 	{
+// 		printf("读取私钥失败，按任意键退出................\n");
+// 		return 0;
+// 	}
 
+// 	unsigned char *tmp = (unsigned char *)&private_key;
+// 	for (index = 0; index < sizeof(private_key); index++)
+// 	{
+// 		printf("%02x", *(tmp + index));
+// 	}
+// 	printf("========================================\n");
+// 
 // 	unsigned char key_read_buf[1024];
 // 	unsigned char key_bin_buf[1024];
 // 	memset(key_read_buf, 0, sizeof(key_read_buf));
@@ -113,8 +122,6 @@ int main(int argc, char **argv)
 // 	ret = fread(&key_read_buf, 1, 2 * sizeof(ECCrefPrivateKey), fp_read);
 // 	perror("222");
 // 
-// 	printf("1111212  %d \n", ret);
-// 
 // 	int n_len = strlen(key_read_buf) / 2;
 // 
 // 	printf("%d   \n", n_len);
@@ -122,6 +129,15 @@ int main(int argc, char **argv)
 // 		return -1;
 // 	Bcd2Bin(key_read_buf, n_len, key_bin_buf);
 // 	memcpy(&private_key_r, key_bin_buf, sizeof(ECCrefPrivateKey));
+// 
+// 	printf("---------------------------------------\n");
+// 
+// 	tmp = (unsigned char *)&private_key_r;
+// 	for (index = 0; index < sizeof(ECCrefPrivateKey); index++)
+// 	{
+// 		printf("%02x", *(tmp + index));
+// 	}
+// 	printf("========================================\n");
 
 
 

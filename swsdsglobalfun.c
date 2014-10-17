@@ -518,8 +518,13 @@ int Bin2BcdAndSave(void *buf_bin, unsigned int bin_len, char *file_name)
 }
 
 
-//读取以十六进制格式保存的秘钥
-int read_bcd_key_to_bin(void *buf_bin, unsigned int bin_len, char *bcd_file_name)
+//
+/** 
+ * 读取以十六进制格式保存的数据到特定缓冲区
+ * bcd_file_name:十六进制文件名;   buf_bin:读取数据保存区域(二进制);  bin_len:(buf_bin)数据结构的空间大小
+ *
+ */
+int read_bcd_key_to_bin(char *bcd_file_name, unsigned char *buf_bin, unsigned int bin_len)
 {
 
 	unsigned char key_read_buf[1024];
@@ -543,8 +548,6 @@ int read_bcd_key_to_bin(void *buf_bin, unsigned int bin_len, char *bcd_file_name
 		perror("fread error");
 		return -1;
 	}
-	
-
 	int n_len = strlen(key_read_buf) / 2;
 
 	printf("====================n_len   %d   \n", n_len);

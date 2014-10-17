@@ -45,4 +45,4 @@ void Bcd2Bin(const char *bufBCD, unsigned int nBYTELen, unsigned char *bufBIN);
 
 int Bin2BcdAndSave(void *buf_bin, unsigned int bin_len, char *file_name);  // 把二进制数据保存为十六进制格式
 
-int read_bcd_key_to_bin(void *buf_bin, unsigned int bcd_len, char *bcd_file_name);//读取以十六进制格式保存的秘钥
+int read_bcd_key_to_bin(char *bcd_file_name, unsigned char *buf_bin, unsigned int bin_len); // 读取以十六进制格式保存的数据
